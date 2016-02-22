@@ -13,8 +13,8 @@ solve(C,L,R):-length(L,N),length(R,N),R ins 0..1,constraints(C,R,R,L,L),sum(R,#=
 constraints(_,[],_,[],_).
 constraints(C,[A|R],Z,[[X,Y]|T],L):-check(C,A,Z,X,Y,L),constraints(C,R,Z,T,L).
 
-check(C,A,Z,X,Y,L):-J is X+1,checkpoint(J,C),not_present(J,Y,L),V is X+1,constraint_prev(V,Y,Z,L,Z,L),W is X-1,constraint_next(W,Y,Z,L,Z,L),A#=0.
-check(C,A,Z,X,Y,L):-J is X-1,checkpoint(J,C),not_present(J,Y,L),V is X+1,constraint_prev(V,Y,Z,L,Z,L),W is X-1,constraint_next(W,Y,Z,L,Z,L),A#=0.
+check(C,A,Z,X,Y,L):-J#=X+1,checkpoint(J,C),not_present(J,Y,L),V is X+1,constraint_prev(V,Y,Z,L,Z,L),W#=X-1,constraint_next(W,Y,Z,L,Z,L),A#=0.
+check(C,A,Z,X,Y,L):-J#=X-1,checkpoint(J,C),not_present(J,Y,L),V is X+1,constraint_prev(V,Y,Z,L,Z,L),W#=X-1,constraint_next(W,Y,Z,L,Z,L),A#=0.
 check(_,_,_,_,_,_).
 
 constraint_next(_,_,[],[],_,_).
